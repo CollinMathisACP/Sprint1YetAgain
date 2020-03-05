@@ -18,8 +18,15 @@ class Sprint1TesterAgain
 	@Test
 	void testToString()
 	{
-		Vision vision1 = new Vision("TestTwo - Vision1","TestTwo - Vision1 - Fake description", null);
-		System.out.println(vision1);
+		Vision vision1 = new Vision("Vision1","V1 ToString test", null);
+		System.out.println(vision1 + "\n");
+		
+		Mission mission1 = new Mission("Mission1","M1 ToString test", vision1);
+		vision1.addChild(mission1);
+		mission1.setParent(mission1);
+		
+		System.out.println(vision1 + "\n");
+		System.out.println(mission1 + "\n");
 	}
 	
 	//Instantiates a realistic example of a VMOSA class, saves it to the disk, decodes it, and resaves it to

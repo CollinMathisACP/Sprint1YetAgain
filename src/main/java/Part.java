@@ -80,15 +80,26 @@ public class Part
 		String str = "";
 		str += (this.name + "\n");
 		str += (this.description + "\n");
-		str += "Children: \n";
-		for(Part element: this.children)
+		
+		if(this.children.size() != 0)
 		{
-			str += (element.getName() + " ");
+			str += "Children: ";
+			for(Part element: this.children)
+			{
+				str += (element.getName() + " ");
+			}
+			
+			str += "\n";
 		}
+		else
+		{
+			str += "No children\n";
+		}
+		
 		
 		if(this.parent != null)
 		{
-			str += "\nParent: \n";
+			str += "Parent: ";
 			str += this.parent.getName();
 		}
 		else
