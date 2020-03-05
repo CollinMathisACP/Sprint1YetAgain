@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="10.0.2" class="java.beans.XMLDecoder">
+ <object class="Centreplan" id="Centreplan0">
+  <void property="date">
+   <string>3 March 2020</string>
+  </void>
+  <void property="description">
+   <string>Desc</string>
+  </void>
+  <void property="institutionalMissionStatement">
+   <string>Institutional statement</string>
+  </void>
+  <void property="name">
+   <string>Four</string>
+  </void>
+  <void property="planHeads">
+   <void method="add">
+    <object class="Goal" id="Goal0">
+     <void property="children">
+      <void method="add">
+       <object class="SLO">
+        <void property="description">
+         <string>SLOdescOne</string>
+        </void>
+        <void property="name">
+         <string>SLO one</string>
+        </void>
+        <void property="parent">
+         <object idref="Goal0"/>
+        </void>
+        <void property="rubicName">
+         <string>Rubric</string>
+        </void>
+        <void property="target">
+         <string>Target</string>
+        </void>
+        <void property="targetAchieved">
+         <boolean>true</boolean>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="description">
+      <string>Desc1</string>
+     </void>
+     <void property="name">
+      <string>GoalOne</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="Goal">
+     <void property="description">
+      <string>Desc2</string>
+     </void>
+     <void property="name">
+      <string>GoalTwo</string>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void property="programMissionStatement">
+   <string>program statement</string>
+  </void>
+ </object>
+</java>

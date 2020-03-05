@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="10.0.2" class="java.beans.XMLDecoder">
+ <object class="VMOSA" id="VMOSA0">
+  <void property="date">
+   <string>3/02/2020</string>
+  </void>
+  <void property="description">
+   <string>In order to test</string>
+  </void>
+  <void property="name">
+   <string>TestTwo</string>
+  </void>
+  <void property="planHeads">
+   <void method="add">
+    <object class="Vision" id="Vision0">
+     <void property="children">
+      <void method="add">
+       <object class="Mission" id="Mission0">
+        <void property="children">
+         <void method="add">
+          <object class="Objective">
+           <void property="description">
+            <string>TestTwo - M1-Objective1 - Fake description</string>
+           </void>
+           <void property="name">
+            <string>TestTwo - Objective</string>
+           </void>
+           <void property="parent">
+            <object idref="Mission0"/>
+           </void>
+          </object>
+         </void>
+        </void>
+        <void property="description">
+         <string>TestTwo - V1Mission1 - Fake description</string>
+        </void>
+        <void property="name">
+         <string>TestTwo - Mission</string>
+        </void>
+        <void property="parent">
+         <object idref="Vision0"/>
+        </void>
+       </object>
+      </void>
+     </void>
+     <void property="description">
+      <string>TestTwo - Vision1 - Fake description</string>
+     </void>
+     <void property="name">
+      <string>TestTwo - Vision1</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="Vision">
+     <void property="description">
+      <string>TestTwo - Vision2 - Fake description</string>
+     </void>
+     <void property="name">
+      <string>TestTwo - Vision2</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="Vision">
+     <void property="description">
+      <string>TestTwo - Vision3 - Fake description</string>
+     </void>
+     <void property="name">
+      <string>TestTwo - Vision3</string>
+     </void>
+    </object>
+   </void>
+  </void>
+ </object>
+</java>
