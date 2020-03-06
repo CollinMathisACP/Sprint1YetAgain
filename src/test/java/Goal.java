@@ -18,9 +18,9 @@ public class Goal extends Part
 		super(name,description,parent);
 	}
 	
-	public void addChild(SLO curr)
+	public void addChild(SLO p)
 	{
-		this.children.add(curr);
+		this.getChildren().add(p);
 	}
 	
 }

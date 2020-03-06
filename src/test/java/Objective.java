@@ -17,8 +17,8 @@ public class Objective extends Part
 		super(name,description,parent);
 	}
 	
-	public void addChild(Strategy curr)
+	public void addChild(Strategy p)
 	{
-		this.children.add(curr);
+		this.getChildren().add(p);
 	}
 }

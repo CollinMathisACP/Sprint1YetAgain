@@ -17,8 +17,8 @@ public class Strategy extends Part
 		super(name,description,parent);
 	}
 	
-	public void addChild(ActionPlan curr)
+	public void addChild(ActionPlan p)
 	{
-		this.children.add(curr);
+		this.getChildren().add(p);
 	}
 }

@@ -17,8 +17,8 @@ public class Mission extends Part
 		super(name,description,parent);
 	}
 	
-	public void addChild(Objective curr)
+	public void addChild(Objective p)
 	{
-		this.children.add(curr);
+		this.getChildren().add(p);
 	}
 }

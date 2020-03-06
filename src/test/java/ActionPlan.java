@@ -18,9 +18,10 @@ public class ActionPlan extends Part
 		super(name,description,parent);
 	}
 	
-	public void addChild(Part curr)
+	@Override
+	public void addChild(Part p)
 	{
-		System.out.println("Warning: you are violating the VMOSA hierarchy!");
-		this.children.add(curr);
+			System.out.println("You are breaking the buisness plan format");
+			return;
 	}
 }

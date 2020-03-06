@@ -107,6 +107,6 @@ public class Part
 			str += "No parent";
 		}
 		
-		return str;
+		return str + "\n";
 	}
 }

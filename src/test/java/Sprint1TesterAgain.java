@@ -16,7 +16,7 @@ class Sprint1TesterAgain
 	}
 	
 	@Test
-	void testToString()
+	void testPartToString()
 	{
 		Vision vision1 = new Vision("Vision1","V1 ToString test", null);
 		System.out.println(vision1 + "\n");
@@ -28,6 +28,51 @@ class Sprint1TesterAgain
 		System.out.println(vision1 + "\n");
 		System.out.println(mission1 + "\n");
 	}
+	
+	@Test
+	void testFindNode()
+	{
+		VMOSA test = new VMOSA("TestTwo","In order to test","3/02/2020");
+		Vision target = new Vision("Target","TestTwo - Vision1 - Fake description", null);
+			Mission mission1 = new Mission("TestTwo - Mission","TestTwo - V1Mission1 - Fake description", target);
+				Objective target2 = new Objective("Target2","TestTwo - M1-Objective1 - Fake description", mission1);
+				mission1.addChild(target2);
+			target.addChild(mission1);
+		test.addChild(target);
+		
+		assertEquals(test.getChildByName("Target"), target);
+		assertEquals(test.getChildByName("Target2"), target2);		
+		assertEquals(test.getChildByName("Should not exist"), null);
+	}
+	
+	@Test
+	void testRemoveNode()
+	{
+		VMOSA test = new VMOSA("TestTwo","In order to test","3/02/2020");
+		Vision target = new Vision("Target","TestTwo - Vision1 - Fake description", null);
+			Mission mission1 = new Mission("TestTwo - Mission","TestTwo - V1Mission1 - Fake description", target);
+				Objective target2 = new Objective("Target2","TestTwo - M1-Objective1 - Fake description", mission1);
+				mission1.addChild(target2);
+			target.addChild(mission1);
+		test.addChild(target);
+		
+		assertEquals(target2, test.removeChildByName(target2.getName()));
+		assertEquals(target, test.removeChildByName(target.getName()));
+	}
+	
+	@Test
+	void testBusinessPlanToString()
+	{
+		VMOSA test = new VMOSA("A1","A1Desc","A1Date");
+		Vision vision1 = new Vision("B1","B1 Desc", null);
+			Mission mission1 = new Mission("C1","C1 Desc", vision1);
+				Objective objective1 = new Objective("D1","D1 Desc", mission1);
+				mission1.addChild(objective1);
+			vision1.addChild(mission1);
+		test.addChild(vision1);
+		
+		System.out.println("------BP------\n" + test);
+	}	
 	
 	//Instantiates a realistic example of a VMOSA class, saves it to the disk, decodes it, and resaves it to
 	//ensure that the XML functions work
@@ -74,6 +119,8 @@ class Sprint1TesterAgain
 		Centreplan testFourIn = (Centreplan) BusinessPlan.openPlan("testFourIn.xml");
 		
 		testFourIn.savePlan("testFourOut.xml");
+		
+		assertEquals(test.toString(), testFourIn.toString());
 	}
 
 }

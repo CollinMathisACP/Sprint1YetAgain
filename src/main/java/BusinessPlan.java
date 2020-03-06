@@ -44,10 +44,88 @@ public class BusinessPlan
 		this.planHeads.add(curr);
 	}
 	
+	public Part getChildByName(String name)
+	{		
+		Part p = null;
+		for(int i = 0; i < planHeads.size(); i++)
+		{
+			//Call the helper for the head of each tree
+			Part current = getChildByNameHelper(planHeads.get(0), name);
+			
+			if(current != null)
+			{
+				p = current;
+			}
+		}
+		
+		return p;
+	}
+	
+
+	
+	private Part getChildByNameHelper(Part child, String name)
+	{
+		Part dum = null;
+		if (child.getName().equals(name)){
+			//We've found the node 
+			dum = child;
+		}else {
+			ArrayList<Part> listofKids = child.getChildren();
+			if (listofKids.size() > 0) {
+				for(int i = 0; i < listofKids.size(); i++) {
+					//We have not found the node yet. Search this node's children
+					Part test  = getChildByNameHelper(listofKids.get(i), name);
+					if (test != null) {
+						dum =  test;
+					}
+				}
+			}else {
+				//Base case: the current node is a leaf and we have not found the node
+				dum =  null;
+			}
+		}
+		
+		return dum;
+		
+
+	}
+	
+	public Part removeChildByName(String name)
+	{
+		//Find the node to be removed
+		Part toBeRemoved = this.getChildByName(name);
+		
+		if(toBeRemoved == null)
+		{
+			return null;
+		}
+		
+		else
+		{
+			//Remove the node by removing it from its parent's children array
+			Part parent = toBeRemoved.getParent();
+			
+			//the node to be removed is a plan head
+			if(parent == null)
+			{
+				this.planHeads.remove(toBeRemoved);
+				return toBeRemoved;
+			}
+			
+			else
+			{
+				parent.getChildren().remove(parent);
+				return toBeRemoved;
+			}
+			
+		}
+	}
+	
 	public String getName()
 	{
 		return name;
 	}
+	
 	
 	public void setName(String name)
 	{
@@ -86,7 +164,8 @@ public class BusinessPlan
 	
 	//Saves this instance to a xml file, with the parameter being the file name.
 	//Will throw a FileNotFoundException if it fails.
-	public void savePlan(String filename) {
+	public void savePlan(String filename)
+	{
 		XMLEncoder encoder=null;
 		try{
 		encoder=new XMLEncoder(new BufferedOutputStream(new FileOutputStream(filename)));
@@ -98,7 +177,8 @@ public class BusinessPlan
 	}
 	
 	//Static method that decodes an xml representation of a BusinessPlan, and returns it
-	public static BusinessPlan openPlan(String filename) {
+	public static BusinessPlan openPlan(String filename)
+	{
 		XMLDecoder decoder=null;
 		try {
 			decoder=new XMLDecoder(new BufferedInputStream(new FileInputStream(filename)));
@@ -106,10 +186,43 @@ public class BusinessPlan
 			System.out.println("ERROR: File dvd.xml not found");
 		}
 		BusinessPlan openedFile=(BusinessPlan)decoder.readObject();
-		System.out.println(openedFile);
 		
 		return openedFile;
 		
 	}
 	
+	public String toString()
+	{
+		String str = "";
+		str += (this.name + "\n");
+		str += (this.description + "\n");
+		str += (this.date + "\n");
+		
+		if(this.planHeads.size() != 0)
+		{
+			for(Part element: planHeads)
+			{
+				str += toStringHelper(element);
+			}
+		}
+		else
+		{
+			str += "No children\n";
+		}
+		
+		return str;
+
+	}
+	
+	private String toStringHelper(Part p)
+	{
+		String str = "";
+		str += p.toString();
+		for(Part element: p.getChildren())
+		{
+			str += this.toStringHelper(element);
+		}
+		
+		return str;
+	}
 }

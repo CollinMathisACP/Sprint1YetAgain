@@ -18,8 +18,10 @@ public class Vision extends Part
 		super(name,description,parent);
 	}
 	
-	public void addChild(Mission curr)
+	
+	public void addChild(Mission p)
 	{
-		this.children.add(curr);
+		this.getChildren().add(p);
 	}
+	
 }
